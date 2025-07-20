@@ -33,17 +33,15 @@ import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import blockIcon from "../../assets/images/blockIcon.png";
 
-
 export default function TeachersPage() {
-
   const [selectedItem, setSelectedItem] = React.useState("Teachers");
   const [teachers, setTeachers] = React.useState([]);
   const [statusFilter, setStatusFilter] = React.useState(null);
-
+  const [teacherstable, setTeachersTable] = useState([]);
 
   const navigate = useNavigate();
   //Filter Status
-  const [statusFilter, setStatusFilter] = useState("الجميع");
+  // const [statusFilter, setStatusFilter] = useState("الجميع");
   const filteredTeachers = teacherstable.filter((teacher) =>
     statusFilter === "الجميع" ? true : teacher.status === statusFilter
   );
@@ -89,7 +87,6 @@ export default function TeachersPage() {
       console.error("Error rejecting teacher:", error);
     }
   }
-
 
   React.useEffect(() => {
     fetchTeachers();
@@ -361,11 +358,9 @@ export default function TeachersPage() {
 
             <Box sx={{ padding: "10px", gap: "16px", display: "flex" }}>
               <Button
-<<<<<<< HEAD
-                onClick={() => setStatusFilter(null)}
-=======
+                // onClick={() => setStatusFilter(null)}
+
                 onClick={() => setStatusFilter("الجميع")}
->>>>>>> Eman
                 sx={{
                   backgroundColor: "#F3F4F6",
                   color: "#6B7280",
@@ -381,17 +376,16 @@ export default function TeachersPage() {
                   },
                 }}
               >
-<<<<<<< HEAD
                 الكل
               </Button>
               <Button
                 onClick={() => setStatusFilter("قيد المراجعة")}
-=======
-                الجميع
-              </Button>
-              <Button
-                onClick={() => setStatusFilter("قيد الانتظار")}
->>>>>>> Eman
+                // =======
+                //                 الجميع
+                //               </Button>
+                //               <Button
+                //                 onClick={() => setStatusFilter("قيد الانتظار")}
+                // >>>>>>> Eman
                 sx={{
                   backgroundColor: "#F3F4F6",
                   color: "#6B7280",
@@ -410,11 +404,10 @@ export default function TeachersPage() {
                 قيد الانتظار
               </Button>
               <Button
-<<<<<<< HEAD
                 onClick={() => setStatusFilter("تم القبول")}
-=======
-                onClick={() => setStatusFilter("مقبول")}
->>>>>>> Eman
+                // =======
+                //                 onClick={() => setStatusFilter("مقبول")}
+                // >>>>>>> Eman
                 sx={{
                   backgroundColor: "#F3F4F6",
                   color: "#6B7280",
@@ -433,11 +426,10 @@ export default function TeachersPage() {
                 مقبول
               </Button>
               <Button
-<<<<<<< HEAD
                 onClick={() => setStatusFilter("تم الرفض")}
-=======
-                onClick={() => setStatusFilter("مرفوض")}
->>>>>>> Eman
+                // =======
+                //                 onClick={() => setStatusFilter("مرفوض")}
+                // >>>>>>> Eman
                 sx={{
                   backgroundColor: "#F3F4F6",
                   color: "#6B7280",
@@ -456,7 +448,6 @@ export default function TeachersPage() {
                 مرفوض
               </Button>
             </Box>
-
 
             <Table>
               <TableHead>
@@ -479,14 +470,12 @@ export default function TeachersPage() {
                 </TableRow>
               </TableHead>
               <TableBody>
-<<<<<<< HEAD
                 {teachers
                   .filter((teacher) => {
                     if (!statusFilter) return true;
                     return (teacher.status || "قيد المراجعة") === statusFilter;
                   })
                   .map((teacher, index) => (
-
                     <TableRow key={index}>
                       <TableCell sx={{ width: "20%", textAlign: "center" }}>
                         {teacher.name}
@@ -507,38 +496,38 @@ export default function TeachersPage() {
                               fontWeight: "400",
                               fontSize: "14px",
                               height: "28px",
-=======
-                {filteredTeachers.map((teacher, index) => (
-                  <TableRow key={index}>
-                    <TableCell sx={{ width: "20%", textAlign: "center" }}>
-                      {teacher.name}
-                    </TableCell>
-                    <TableCell sx={{ width: "20%", textAlign: "center" }}>
-                      {teacher.subject}
-                    </TableCell>
-                    <TableCell sx={{ width: "20%", textAlign: "center" }}>
-                      {teacher.experiance}
-                    </TableCell>
-                    <TableCell sx={{ width: "20%", textAlign: "center" }}>
-                      {teacher.status}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        padding: "0 30px",
-                        width: "20%",
-                        textAlign: "center",
-                      }}
-                    >
-                      <Box sx={{ display: "flex", gap: "12px" }}>
-                        <Button
-                          sx={{
-                            fontWeight: "400",
-                            fontSize: "14px",
-                            height: "28px",
-                            background: "#10B981",
-                            color: "white",
-                            "&:hover": {
->>>>>>> Eman
+                              // =======
+                              //                 {filteredTeachers.map((teacher, index) => (
+                              //                   <TableRow key={index}>
+                              //                     <TableCell sx={{ width: "20%", textAlign: "center" }}>
+                              //                       {teacher.name}
+                              //                     </TableCell>
+                              //                     <TableCell sx={{ width: "20%", textAlign: "center" }}>
+                              //                       {teacher.subject}
+                              //                     </TableCell>
+                              //                     <TableCell sx={{ width: "20%", textAlign: "center" }}>
+                              //                       {teacher.experiance}
+                              //                     </TableCell>
+                              //                     <TableCell sx={{ width: "20%", textAlign: "center" }}>
+                              //                       {teacher.status}
+                              //                     </TableCell>
+                              //                     <TableCell
+                              //                       sx={{
+                              //                         padding: "0 30px",
+                              //                         width: "20%",
+                              //                         textAlign: "center",
+                              //                       }}
+                              //                     >
+                              //                       <Box sx={{ display: "flex", gap: "12px" }}>
+                              //                         <Button
+                              //                           sx={{
+                              //                             fontWeight: "400",
+                              //                             fontSize: "14px",
+                              //                             height: "28px",
+                              //                             background: "#10B981",
+                              //                             color: "white",
+                              //                             "&:hover": {
+                              // >>>>>>> Eman
                               background: "#10B981",
                               color: "white",
                               "&:hover": {
@@ -548,7 +537,6 @@ export default function TeachersPage() {
                             }}
                             onClick={() => acceptTeacher(teacher.id)}
                             disabled={teacher.status === "تم القبول"}
-
                           >
                             قبول
                           </Button>
@@ -559,7 +547,7 @@ export default function TeachersPage() {
                               height: "28px",
                               background: "#EF4444",
                               color: "white",
-<<<<<<< HEAD
+
                               "&:hover": {
                                 background: "#EF4444",
                                 color: "white",
@@ -572,37 +560,10 @@ export default function TeachersPage() {
                           </Button>
                         </Box>
                       </TableCell>
-
                     </TableRow>
                   ))}
-=======
-                            },
-                          }}
-                        >
-                          رفض
-                        </Button>
-                        <Button
-                          sx={{
-                            fontWeight: "400",
-                            fontSize: "14px",
-                            height: "28px",
-                            background: "white",
-                            color: "white",
-                            "&:hover": {
-                              background: "#f1c3c3ff",
-                              color: "white",
-                            },
-                          }}
-                        >
-                          <img src={blockIcon} alt="Block" />
-                        </Button>
-                      </Box>
-                    </TableCell>
-                  </TableRow>
-                ))}
->>>>>>> Eman
+             
               </TableBody>
-
             </Table>
           </TableContainer>
         </Box>
@@ -610,3 +571,5 @@ export default function TeachersPage() {
     </ThemeProvider>
   );
 }
+
+ 

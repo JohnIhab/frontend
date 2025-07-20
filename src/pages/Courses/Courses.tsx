@@ -17,16 +17,10 @@ import {
   Paper,
   Button,
   Dialog,
-<<<<<<< HEAD
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-=======
   DialogActions,
   DialogContent,
   TextField,
   DialogTitle,
->>>>>>> Eman
 } from "@mui/material";
 import { useState } from "react";
 
@@ -46,60 +40,56 @@ import { collection, getDocs } from "firebase/firestore";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-
-
 export default function PrimarySearchAppBar() {
   const [selectedItem, setSelectedItem] = React.useState("dashboard");
   const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
   const [selectedCourseId, setSelectedCourseId] = React.useState(null);
   const navigate = useNavigate();
 
- 
-//   const [courses, setCourses] = React.useState([]);
+  const [courses, setCourses] = React.useState([]);
 
-//   React.useEffect(() => {
-//     const fetchCourses = async () => {
-//       try {
-//         const querySnapshot = await getDocs(collection(db, "courses"));
-//         const courseList = querySnapshot.docs.map((doc) => ({
-//           id: doc.id,
-//           ...doc.data(),
-//         }));
-//         setCourses(courseList);
-//       } catch (error) {
-//         console.error("Error fetching courses:", error);
-//       }
-//     };
+  React.useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "courses"));
+        const courseList = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setCourses(courseList);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
 
-//     fetchCourses();
-//   }, []);
+    fetchCourses();
+  }, []);
 
-//   const handleDeleteCourse = async (courseId) => {
-//     try {
-//       await deleteDoc(doc(db, "courses", courseId));
-//       setCourses((prev) => prev.filter((course) => course.id !== courseId));
-//     } catch (error) {
-//       console.error("Error deleting course:", error);
-//     }
-//   };
-//   const confirmDeleteCourse = async () => {
-//   try {
-//     await deleteDoc(doc(db, "courses", selectedCourseId));
-//     setCourses((prev) =>
-//       prev.filter((course) => course.id !== selectedCourseId)
-//     );
-//     setOpenDeleteDialog(false);
-//     setSelectedCourseId(null);
-//   } catch (error) {
-//     console.error("Error deleting course:", error);
-//   }
-// };
- 
+  const handleDeleteCourse = async (courseId) => {
+    try {
+      await deleteDoc(doc(db, "courses", courseId));
+      setCourses((prev) => prev.filter((course) => course.id !== courseId));
+    } catch (error) {
+      console.error("Error deleting course:", error);
+    }
+  };
+  const confirmDeleteCourse = async () => {
+    try {
+      await deleteDoc(doc(db, "courses", selectedCourseId));
+      setCourses((prev) =>
+        prev.filter((course) => course.id !== selectedCourseId)
+      );
+      setOpenDeleteDialog(false);
+      setSelectedCourseId(null);
+    } catch (error) {
+      console.error("Error deleting course:", error);
+    }
+  };
+
   //EditPassword
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
- 
 
   return (
     <ThemeProvider theme={theme}>
@@ -414,32 +404,36 @@ export default function PrimarySearchAppBar() {
                       >
                         <DeleteIcon />
                       </Button>
-
-
                     </TableCell>
                   </TableRow>
                 ))}
-                
               </TableBody>
             </Table>
           </TableContainer>
           <Dialog
-  open={openDeleteDialog}
-  onClose={() => setOpenDeleteDialog(false)}
->
-  <DialogTitle>تأكيد حذف الكورس</DialogTitle>
-  <DialogContent>
-    <Typography>هل أنت متأكد من أنك تريد حذف هذا الكورس؟</Typography>
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={() => setOpenDeleteDialog(false)} color="primary">
-      إلغاء
-    </Button>
-    <Button onClick={confirmDeleteCourse} color="error" variant="contained">
-      حذف
-    </Button>
-  </DialogActions>
-</Dialog>
+            open={openDeleteDialog}
+            onClose={() => setOpenDeleteDialog(false)}
+          >
+            <DialogTitle>تأكيد حذف الكورس</DialogTitle>
+            <DialogContent>
+              <Typography>هل أنت متأكد من أنك تريد حذف هذا الكورس؟</Typography>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => setOpenDeleteDialog(false)}
+                color="primary"
+              >
+                إلغاء
+              </Button>
+              <Button
+                onClick={confirmDeleteCourse}
+                color="error"
+                variant="contained"
+              >
+                حذف
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Box>
       </Stack>
     </ThemeProvider>

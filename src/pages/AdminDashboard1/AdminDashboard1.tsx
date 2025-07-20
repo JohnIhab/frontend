@@ -32,7 +32,6 @@ import TopaminIcon from "../../assets/images/Icon-logo.png";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
-
 export default function PrimarySearchAppBar() {
   const [selectedItem, setSelectedItem] = React.useState("Dashboard");
   const [studentsCount, setStudentsCount] = React.useState(0);
@@ -41,18 +40,16 @@ export default function PrimarySearchAppBar() {
 
   const navigate = useNavigate();
 
-
-
-
   async function fetchData() {
     try {
       const querySnapshot = await getDocs(collection(db, "users"));
 
-      const users = querySnapshot.docs.map(doc => doc.data());
+      const users = querySnapshot.docs.map((doc) => doc.data());
 
-      const students = users.filter(user => user.role === "student");
-      const teachers = users.filter(user => user.role === "teacher" && user.status === "accepted");
-
+      const students = users.filter((user) => user.role === "student");
+      const teachers = users.filter(
+        (user) => user.role === "teacher" && user.status === "accepted"
+      );
 
       setStudentsCount(students.length);
       setTeachersCount(teachers.length);
@@ -63,7 +60,7 @@ export default function PrimarySearchAppBar() {
   async function fetchCourses() {
     try {
       const querySnapshot = await getDocs(collection(db, "courses"));
-      const courses = querySnapshot.docs.map(doc => doc.data());
+      const courses = querySnapshot.docs.map((doc) => doc.data());
       setCoursesCount(courses.length);
       console.log("Courses:", courses);
     } catch (error) {
@@ -72,9 +69,9 @@ export default function PrimarySearchAppBar() {
   }
 
   //EditPassword
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // direction ,language
 
@@ -84,7 +81,6 @@ export default function PrimarySearchAppBar() {
     fetchData();
     fetchCourses();
   }, []);
-
 
   return (
     <ThemeProvider theme={theme}>
